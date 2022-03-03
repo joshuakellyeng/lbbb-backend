@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lb.backend.models.MenuItem;
 import com.lb.backend.models.MenuItemCategory;
+import com.lb.backend.repositories.BurgerBattleBurgerRepository;
 import com.lb.backend.repositories.MenuItemCategoryRepository;
 import com.lb.backend.repositories.MenuItemsRepository;
 
@@ -21,6 +22,9 @@ public class MenuController {
 	
 	@Autowired 
 	private MenuItemCategoryRepository menuitemcategoryRepo;
+	
+	@Autowired
+	private BurgerBattleBurgerRepository burgerbattleburgerRepo;
 	
 	@GetMapping("allmenuitems")
 	public List<MenuItemCategory> getAllMenuItemCategory(){
