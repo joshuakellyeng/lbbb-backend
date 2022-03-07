@@ -3,8 +3,10 @@ package com.lb.backend.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,6 +50,19 @@ public class MenuController {
 	@PostMapping("/allmenuitems")
 	public MenuItem createMenuItem(@RequestBody MenuItem menuitem) {
 		return menuitemsRepo.save(menuitem);
+	}
+	
+	@DeleteMapping("/allmenuitems/{id}")
+	public ResponseEntity<String> deleteMenuItem(@PathVariable int id) {
+		//find menu item we want to delete
+		menuitemsRepo.findById(id)
+			.orElseThrow(()-> new ResourceNotFoundException("Menu Item Not Found."));
+		
+		String message = "Menu Item has been deleted.";
+		
+		menuitemsRepo.deleteById(id);
+		return new ResponseEntity<>(message, HttpStatus.OK);
+		
 	}
 
 }
