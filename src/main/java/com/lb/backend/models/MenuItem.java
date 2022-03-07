@@ -32,6 +32,10 @@ public class MenuItem {
 		return id;
 	}
 	
+	public void setMenuItemCategoryId(int menuitemcategory_id) {
+		this.menuitemcategory_id = menuitemcategory_id;
+	}
+	
 	public int getMenuItemCategoryId() {
 		return menuitemcategory_id;
 	}
