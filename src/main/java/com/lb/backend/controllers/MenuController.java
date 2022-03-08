@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,12 +47,31 @@ public class MenuController {
 	}
 	
 	
-	//create MenuItem rest api
+	//Creates Menu Items
 	@PostMapping("/allmenuitems")
 	public MenuItem createMenuItem(@RequestBody MenuItem menuitem) {
 		return menuitemsRepo.save(menuitem);
 	}
 	
+	//Updating Menu Items
+	@PutMapping("/allmenuitems/{id}")
+	public ResponseEntity<MenuItem> updateMenuItem(@PathVariable int id, @RequestBody MenuItem newMenuItemInfo) {
+		MenuItem foundMenuItem = menuitemsRepo.findById(id)
+				.orElseThrow(()-> new ResourceNotFoundException("Menu item not found."));
+		
+		foundMenuItem.setMenuItemCategoryId(newMenuItemInfo.getMenuItemCategoryId());
+		foundMenuItem.setItemname(newMenuItemInfo.getItemname());
+		foundMenuItem.setItemdesc(newMenuItemInfo.getItemdesc());
+		foundMenuItem.setItemprice(newMenuItemInfo.getItemprice());
+		
+		MenuItem updatedMenuItem = menuitemsRepo.save(foundMenuItem);
+		
+		return ResponseEntity.ok(updatedMenuItem);
+		
+	}
+	
+	
+	//Deletes Menu Items
 	@DeleteMapping("/allmenuitems/{id}")
 	public ResponseEntity<String> deleteMenuItem(@PathVariable int id) {
 		//find menu item we want to delete
