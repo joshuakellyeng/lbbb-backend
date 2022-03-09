@@ -39,7 +39,7 @@ public class MenuController {
 	}
 	
 	//gets item by specific id
-	@GetMapping("menuitem/{id}")
+	@GetMapping("allmenuitems/{id}")
 	public ResponseEntity<MenuItem> getMenuItemById(@PathVariable int id) {
 		MenuItem foundmenuitem = menuitemsRepo.findById(id)
 				.orElseThrow(()-> new ResourceNotFoundException("Menu item not found."));
@@ -48,13 +48,13 @@ public class MenuController {
 	
 	
 	//Creates Menu Items
-	@PostMapping("/allmenuitems")
+	@PostMapping("allmenuitems")
 	public MenuItem createMenuItem(@RequestBody MenuItem menuitem) {
 		return menuitemsRepo.save(menuitem);
 	}
 	
 	//Updating Menu Items
-	@PutMapping("/allmenuitems/{id}")
+	@PutMapping("allmenuitems/{id}")
 	public ResponseEntity<MenuItem> updateMenuItem(@PathVariable int id, @RequestBody MenuItem newMenuItemInfo) {
 		MenuItem foundMenuItem = menuitemsRepo.findById(id)
 				.orElseThrow(()-> new ResourceNotFoundException("Menu item not found."));
@@ -72,7 +72,7 @@ public class MenuController {
 	
 	
 	//Deletes Menu Items
-	@DeleteMapping("/allmenuitems/{id}")
+	@DeleteMapping("allmenuitems/{id}")
 	public ResponseEntity<String> deleteMenuItem(@PathVariable int id) {
 		//find menu item we want to delete
 		menuitemsRepo.findById(id)
