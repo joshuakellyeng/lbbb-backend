@@ -22,7 +22,7 @@ import com.lb.backend.repositories.MenuItemCategoryRepository;
 import com.lb.backend.repositories.MenuItemsRepository;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://lb-burgerbar.netlify.app")
 @RequestMapping("/api/v1/")
 public class MenuController {
 	
