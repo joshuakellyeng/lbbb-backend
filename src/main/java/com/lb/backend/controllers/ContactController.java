@@ -19,7 +19,7 @@ import com.lb.backend.models.Contact;
 import com.lb.backend.repositories.ContactRepository;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://lb-burgerbar.netlify.app")
 @RequestMapping("/api/v1/")
 public class ContactController {
 	
