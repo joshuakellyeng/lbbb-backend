@@ -19,7 +19,7 @@ import com.lb.backend.models.Applicant;
 import com.lb.backend.repositories.ApplicantRepository;
 
 @RestController
-@CrossOrigin(origins = "https://lb-burgerbar.netlify.app")
+@CrossOrigin(origins = "https://lbburgerbar.netlify.app")
 @RequestMapping("/api/v1/")
 public class ApplicantController {
 
